@@ -4,17 +4,17 @@ const numbers = [1,2,3,4,5];
 // When I do array[2], i'm telling the computer, hey go to the array and grab the 3rd item from where the array is stored.
 
 
-//push
-strings.push('e');
+//push - add last
+strings.push('e');//O(1)
 
-//pop
+//pop - remove last
+strings.pop(); //O(1)
 strings.pop();
-strings.pop();
 
-//unshift
-strings.unshift('x')
+//unshift - add start
+strings.unshift('x')//O(n)
 
-//splice
-strings.splice(2, 0, 'alien');
+//splice - add middle
+strings.splice(2, 0, 'alien'); //O(n)
 
 console.log(strings)
