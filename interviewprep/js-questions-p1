@@ -2275,25 +2275,29 @@ Primitive Types: Favor primitive types (e.g., strings, numbers) over mutable obj
 Functional Programming: Embrace functional programming principles, such as pure functions and immutability, to design code that is inherently immutable and easier to reason about.
 Immutable Operations: When working with arrays or objects, use methods like map, filter, and concat to perform immutable operations rather than directly modifying the original data.
 Example of Achieving Immutability
-javascript
-Copy code
+
 // Using Array.map to achieve immutability
 let numbers = [1, 2, 3];
 let doubledNumbers = numbers.map(num => num * 2); // Creates a new array
 console.log(doubledNumbers); // Output: [2, 4, 6]
 console.log(numbers); // Original array remains unchanged: [1, 2, 3]
-In summary, immutability offers several benefits such as predictable state, concurrency safety, and simpler debugging, but it may come with trade-offs in terms of memory and performance overhead. By adopting techniques like using immutable data structures and avoiding mutation, you can achieve immutability in your code and reap its advantages.
+In summary, immutability offers several benefits such as predictable state, concurrency safety, and simpler debugging,
+but it may come with trade-offs in terms of memory and performance overhead.
+By adopting techniques like using immutable data structures and avoiding mutation, you can achieve immutability in your code and reap its advantages.
+
+
 
 Explain the difference between synchronous and asynchronous functions.
-ChatGPT
+
 Synchronous and asynchronous functions differ in how they handle the flow of execution in a program:
 
 Synchronous Functions
-Execution Flow: In synchronous functions, statements are executed one after the other in a sequential manner. Each statement must complete before the next one begins.
-Blocking: Synchronous operations block the execution of subsequent code until they complete. If one operation takes a long time to finish, it can cause the entire program to pause and become unresponsive.
+Execution Flow: In synchronous functions, statements are executed one after the other in a sequential manner.
+Each statement must complete before the next one begins.
+Blocking: Synchronous operations block the execution of subsequent code until they complete.
+If one operation takes a long time to finish, it can cause the entire program to pause and become unresponsive.
 Example: Typical JavaScript functions operate synchronously by default, such as simple mathematical calculations or iterating over an array.
-javascript
-Copy code
+
 function synchronousFunction() {
   console.log('Step 1');
   console.log('Step 2');
@@ -2306,12 +2310,13 @@ synchronousFunction();
 // Step 2
 // Step 3
 Asynchronous Functions
-Execution Flow: In asynchronous functions, statements are not executed sequentially. Instead, asynchronous operations are initiated, and the program continues to execute without waiting for the operation to complete.
-Non-Blocking: Asynchronous operations do not block the execution of subsequent code. Instead, they allow other code to run while waiting for the operation to finish.
+Execution Flow: In asynchronous functions, statements are not executed sequentially.
+Instead, asynchronous operations are initiated, and the program continues to execute without waiting for the operation to complete.
+Non-Blocking: Asynchronous operations do not block the execution of subsequent code.
+Instead, they allow other code to run while waiting for the operation to finish.
 Callbacks or Promises: Asynchronous functions often utilize callbacks, promises, or async/await syntax to handle the result of the operation once it completes.
 Example: Functions that involve I/O operations (e.g., fetching data from a server, reading files from disk) or timers (e.g., setTimeout) are typically asynchronous.
-javascript
-Copy code
+
 function asynchronousFunction() {
   console.log('Step 1');
   setTimeout(() => {
@@ -2325,32 +2330,39 @@ asynchronousFunction();
 // Step 1
 // Step 3
 // Step 2 (after 1 second)
+
 Key Differences
-Execution Order: Synchronous functions execute statements sequentially, while asynchronous functions initiate operations and continue executing without waiting for them to complete.
-Blocking Behavior: Synchronous functions block subsequent code execution until they finish, potentially causing the program to become unresponsive. Asynchronous functions do not block execution and allow other code to run concurrently.
-Handling Results: Synchronous functions provide results immediately after completion, while asynchronous functions require handling results asynchronously using callbacks, promises, or async/await.
+Execution Order: Synchronous functions execute statements sequentially, while asynchronous functions initiate operations and continue
+executing without waiting for them to complete.
+Blocking Behavior: Synchronous functions block subsequent code execution until they finish, potentially causing the program to become unresponsive.
+Asynchronous functions do not block execution and allow other code to run concurrently.
+Handling Results: Synchronous functions provide results immediately after completion,
+while asynchronous functions require handling results asynchronously using callbacks, promises, or async/await.
 Use Cases
 Synchronous Functions: Suitable for tasks that can be completed quickly and do not involve I/O operations or long-running tasks.
-Asynchronous Functions: Ideal for tasks that involve I/O operations, network requests, file system operations, or tasks that may take a significant amount of time to complete without blocking the main thread.
-Understanding the distinction between synchronous and asynchronous functions is crucial for writing efficient and responsive JavaScript code, especially in applications that involve I/O operations or interact with external resources.
+Asynchronous Functions: Ideal for tasks that involve I/O operations, network requests, file system operations, or tasks that may take
+a significant amount of time to complete without blocking the main thread.
+Understanding the distinction between synchronous and asynchronous functions is crucial for writing efficient and responsive JavaScript code,
+especially in applications that involve I/O operations or interact with external resources.
 
 What is event loop?
 What is the difference between call stack and task queue?
 ChatGPT
-The event loop, call stack, and task queue are core concepts in JavaScript's concurrency model, essential for understanding how JavaScript manages asynchronous code execution:
+The event loop, call stack, and task queue are core concepts in JavaScript's concurrency model, essential for understanding how JavaScript
+manages asynchronous code execution:
 
 Event Loop
 Definition: The event loop is a mechanism in JavaScript that continuously checks the call stack and task queue to determine which function should be executed next.
 Purpose: It ensures that JavaScript remains single-threaded by processing tasks in a non-blocking, asynchronous manner.
-Operation: The event loop continuously checks the call stack for synchronous code execution. If the call stack is empty, it looks at the task queue and moves tasks from the queue to the call stack for execution.
+Operation: The event loop continuously checks the call stack for synchronous code execution. If the call stack is empty,
+it looks at the task queue and moves tasks from the queue to the call stack for execution.
 Example: In a browser environment, tasks can include event handlers, timer callbacks, or AJAX responses.
 Call Stack
 Definition: The call stack is a data structure that stores information about the execution of function calls in JavaScript.
 Purpose: It keeps track of function calls and their respective execution contexts (including local variables and parameters) in a Last-In-First-Out (LIFO) manner.
 Operation: When a function is invoked, a new frame is pushed onto the call stack. When the function completes, its frame is popped off the stack.
 Example:
-javascript
-Copy code
+
 function greet(name) {
   return 'Hello, ' + name;
 }
@@ -2361,10 +2373,12 @@ function sayHello() {
 }
 
 sayHello(); // Call stack: [sayHello(), greet()]
+
 Task Queue (or Message Queue)
 Definition: The task queue is a queue that holds tasks (or messages) that are ready to be executed asynchronously.
 Purpose: It stores tasks that are scheduled to be executed in the future, such as event handlers, timer callbacks, or resolved promises.
-Operation: When a task is ready to be executed, it is placed in the task queue. The event loop continuously checks the task queue and moves tasks from the queue to the call stack for execution when the call stack is empty.
+Operation: When a task is ready to be executed, it is placed in the task queue.
+The event loop continuously checks the task queue and moves tasks from the queue to the call stack for execution when the call stack is empty.
 Example: Timer callbacks scheduled with setTimeout or setInterval are placed in the task queue.
 Difference between Call Stack and Task Queue
 Purpose:
@@ -2379,13 +2393,16 @@ Content:
 
 Call Stack: Contains function calls and their associated execution contexts (e.g., local variables, parameters).
 Task Queue: Contains tasks (e.g., event handlers, timer callbacks) that are ready to be executed asynchronously.
-In summary, while the call stack manages the synchronous execution of function calls, the task queue handles asynchronous tasks, and the event loop coordinates the flow of execution between them, ensuring JavaScript's single-threaded nature while supporting non-blocking asynchronous operations.
+In summary, while the call stack manages the synchronous execution of function calls, the task queue handles asynchronous tasks,
+and the event loop coordinates the flow of execution between them, ensuring JavaScript's single-threaded nature while
+supporting non-blocking asynchronous operations.
 
 
 
 What are the differences between variables created using let, var or const?
+
 Can you change a property of an object defined via const? How you can change this behavior?
-ChatGPT
+
 In JavaScript, the let, var, and const keywords are used to declare variables, but they have different characteristics and behaviors:
 
 Differences Between let, var, and const
@@ -2395,8 +2412,11 @@ var: Function-scoped. Variables declared with var are scoped to the function in 
 let and const: Block-scoped. Variables declared with let and const are scoped to the nearest enclosing block, such as a function, loop, or conditional statement.
 Hoisting:
 
-var: Variables declared with var are hoisted to the top of their scope and initialized with undefined. This means you can reference a var variable before its declaration without causing a ReferenceError.
-let and const: Variables declared with let and const are hoisted but not initialized. This results in a "temporal dead zone" from the start of the block until the declaration is encountered. Referencing the variable in this period results in a ReferenceError.
+var: Variables declared with var are hoisted to the top of their scope and initialized with undefined.
+This means you can reference a var variable before its declaration without causing a ReferenceError.
+let and const: Variables declared with let and const are hoisted but not initialized.
+This results in a "temporal dead zone" from the start of the block until the declaration is encountered.
+Referencing the variable in this period results in a ReferenceError.
 Re-declaration:
 
 var: Allows re-declaration within the same scope.
@@ -2404,22 +2424,23 @@ let and const: Do not allow re-declaration within the same scope. This helps pre
 Assignment:
 
 var and let: Allow re-assignment of values.
-const: Does not allow re-assignment. Once a variable is assigned a value with const, it cannot be changed. However, this immutability applies only to the binding, not to the contents of objects or arrays assigned to const variables.
+const: Does not allow re-assignment.
+Once a variable is assigned a value with const, it cannot be changed.
+However, this immutability applies only to the binding, not to the contents of objects or arrays assigned to const variables.
 Changing Properties of an Object Defined with const
-Yes, you can change properties of an object defined with const. The const declaration ensures that the binding (the variable itself) cannot be reassigned, but it does not make the object it references immutable. For example:
+Yes, you can change properties of an object defined with const.
+The const declaration ensures that the binding (the variable itself) cannot be reassigned, but it does not make the object it references immutable. For example:
 
-javascript
-Copy code
 const obj = { a: 1, b: 2 };
 obj.a = 3; // This is allowed
 console.log(obj); // Output: { a: 3, b: 2 }
 In the example above, the reference to the object obj cannot be changed to reference another object, but the properties of the object can be modified.
 
 Making an Object Immutable
-To make the properties of an object immutable, you can use Object.freeze(). This method prevents the modification of existing properties and the addition of new properties. However, it is a shallow freeze, meaning nested objects are not frozen.
+To make the properties of an object immutable, you can use Object.freeze().
+This method prevents the modification of existing properties and the addition of new properties.
+However, it is a shallow freeze, meaning nested objects are not frozen.
 
-javascript
-Copy code
 const obj = { a: 1, b: 2 };
 Object.freeze(obj);
 
@@ -2430,8 +2451,7 @@ obj.c = 4; // This will not add a new property
 console.log(obj); // Output: { a: 1, b: 2 }
 For a deep freeze, you need a custom function to recursively freeze all nested objects:
 
-javascript
-Copy code
+
 function deepFreeze(obj) {
   Object.keys(obj).forEach(name => {
     let prop = obj[name];
@@ -2451,15 +2471,19 @@ deepFreeze(deepObj);
 
 deepObj.b.c = 4; // This will not change the value of b.c
 console.log(deepObj.b.c); // Output: 2
-In summary, let and const provide block-scoping, with const offering additional protection against re-assignment. var is function-scoped and allows redeclaration. While const prevents reassignment of the variable itself, it does not protect against modifications to the contents of objects or arrays assigned to it. To ensure immutability of objects, you can use Object.freeze() or implement a deep freeze function.
+In summary, let and const provide block-scoping, with const offering additional protection against re-assignment.
+var is function-scoped and allows redeclaration.
+While const prevents reassignment of the variable itself, it does not protect against modifications to the contents of objects or arrays assigned to it.
+To ensure immutability of objects, you can use Object.freeze() or implement a deep freeze function.
 
 
 
 
 
 What are the differences between ES6 class and ES5 function constructors?
-ChatGPT
-In JavaScript, both ES6 classes and ES5 function constructors can be used to create objects and define their properties and methods. However, there are significant differences between the two approaches in terms of syntax, behavior, and features. Here are the key differences:
+
+In JavaScript, both ES6 classes and ES5 function constructors can be used to create objects and define their properties and methods.
+However, there are significant differences between the two approaches in terms of syntax, behavior, and features. Here are the key differences:
 
 Syntax and Syntax Sugar
 Syntax:
@@ -2488,14 +2512,14 @@ function Person(name, age) {
 Person.prototype.greet = function() {
   console.log(`Hello, my name is ${this.name}`);
 };
-ES6 classes provide a cleaner and more concise syntax that resembles classical OOP languages. They are syntactic sugar over the prototypal inheritance used in ES5 function constructors.
+ES6 classes provide a cleaner and more concise syntax that resembles classical OOP languages.
+They are syntactic sugar over the prototypal inheritance used in ES5 function constructors.
 
 Inheritance
 Inheritance:
 
 ES6 Class:
-javascript
-Copy code
+
 class Employee extends Person {
   constructor(name, age, jobTitle) {
     super(name, age);
@@ -2507,8 +2531,7 @@ class Employee extends Person {
   }
 }
 ES5 Function Constructor:
-javascript
-Copy code
+
 function Employee(name, age, jobTitle) {
   Person.call(this, name, age);
   this.jobTitle = jobTitle;
@@ -2526,8 +2549,7 @@ Static Methods
 Static Methods:
 
 ES6 Class:
-javascript
-Copy code
+
 class Person {
   static describe() {
     console.log("This is a class for creating persons.");
@@ -2536,8 +2558,7 @@ class Person {
 
 Person.describe();
 ES5 Function Constructor:
-javascript
-Copy code
+
 function Person(name, age) {
   this.name = name;
   this.age = age;
@@ -2554,8 +2575,7 @@ new.target
 new.target:
 
 ES6 Class:
-javascript
-Copy code
+
 class Person {
   constructor(name, age) {
     if (new.target === Person) {
@@ -2575,9 +2595,9 @@ class Employee extends Person {
 
 // const p = new Person("John", 30); // This will throw an error
 const e = new Employee("Jane", 25, "Engineer");
+
 ES5 Function Constructor:
-javascript
-Copy code
+
 function Person(name, age) {
   if (this.constructor === Person) {
     throw new Error("Cannot instantiate Person directly");
@@ -2602,13 +2622,11 @@ Behavior Differences
 Behavior Differences:
 Hoisting:
 ES6 Class: Classes are not hoisted. You must declare a class before using it.
-javascript
-Copy code
+
 // console.log(new Person()); // ReferenceError: Cannot access 'Person' before initialization
 class Person {}
 ES5 Function Constructor: Function declarations are hoisted, so you can instantiate an object before the function declaration.
-javascript
-Copy code
+
 var p = new Person();
 function Person() {}
 Strict Mode:
@@ -2617,8 +2635,7 @@ ES5 Function Constructor: Function constructors are not in strict mode by defaul
 Other Features
 Other Features:
 Private Fields: ES6 classes (since ES2020) support private fields using the # syntax.
-javascript
-Copy code
+
 class Person {
   #privateField = "This is private";
 
@@ -2632,16 +2649,17 @@ console.log(p.getPrivateField()); // This is private
 // console.log(p.#privateField); // SyntaxError: Private field '#privateField' must be declared in an enclosing class
 In summary, ES6 classes offer a more concise and feature-rich way to create and manage objects and inheritance in JavaScript, closely aligning with classical OOP paradigms. ES5 function constructors achieve similar functionality but require more boilerplate and manual setup, particularly for inheritance and static methods.
 
+
+
 Can you offer a use case for the new arrow => function syntax? How does this new syntax differ from other functions?
-ChatGPT
+
 The arrow function syntax (=>) introduced in ES6 provides a more concise way to write functions and has several unique characteristics that differentiate it from traditional function expressions and declarations. Here’s a detailed explanation of these differences and a use case that highlights the advantages of arrow functions.
 
 Differences Between Arrow Functions and Regular Functions
 Syntax:
 
 Arrow Function:
-javascript
-Copy code
+
 const add = (a, b) => a + b;
 Regular Function:
 javascript
@@ -2653,7 +2671,8 @@ Arrow functions are more concise, especially for simple operations.
 
 this Binding:
 
-Arrow Function: Arrow functions do not have their own this context. Instead, they inherit this from the enclosing lexical scope. This means this inside an arrow function is the same as this outside the arrow function.
+Arrow Function: Arrow functions do not have their own this context. Instead, they inherit this from the enclosing lexical scope.
+This means this inside an arrow function is the same as this outside the arrow function.
 Regular Function: Regular functions have their own this context, which can change depending on how the function is called (as a method, as a constructor, etc.).
 No arguments Object:
 
@@ -2664,13 +2683,12 @@ Constructors:
 Arrow Function: Arrow functions cannot be used as constructors. They will throw an error if used with new.
 Regular Function: Regular functions can be used as constructors to create instances of objects.
 Use Case: Simplifying Callback Functions
-One of the primary use cases for arrow functions is simplifying the syntax of callback functions, especially in array methods like map, filter, and reduce. Here's an example using the map method.
+One of the primary use cases for arrow functions is simplifying the syntax of callback functions, especially in array methods like map, filter, and reduce.
+Here's an example using the map method.
 
 Example: Using Arrow Functions with Array Methods
 Using a Regular Function:
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 const squares = numbers.map(function(number) {
   return number * number;
@@ -2678,20 +2696,17 @@ const squares = numbers.map(function(number) {
 console.log(squares); // Output: [1, 4, 9, 16, 25]
 Using an Arrow Function:
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 const squares = numbers.map(number => number * number);
 console.log(squares); // Output: [1, 4, 9, 16, 25]
 The arrow function syntax makes the code shorter and more readable.
 
 Use Case: Maintaining this Context in Methods
-Another common use case for arrow functions is in object methods, especially when dealing with asynchronous operations where the this context can be lost. Here's an example using setTimeout.
+Another common use case for arrow functions is in object methods, especially when dealing with asynchronous operations where the this context can be lost.
+Here's an example using setTimeout.
 
 Using a Regular Function:
 
-javascript
-Copy code
 function Timer() {
   this.seconds = 0;
 
@@ -2702,12 +2717,11 @@ function Timer() {
 }
 
 const timer = new Timer();
-In the above code, this inside the setInterval callback does not refer to the Timer instance. To fix this, you often see code using var self = this or using bind(this).
+In the above code, this inside the setInterval callback does not refer to the Timer instance.
+To fix this, you often see code using var self = this or using bind(this).
 
 Using an Arrow Function:
 
-javascript
-Copy code
 function Timer() {
   this.seconds = 0;
 
@@ -2721,26 +2735,34 @@ const timer = new Timer();
 With the arrow function, this inside the setInterval callback correctly refers to the Timer instance because arrow functions inherit this from their lexical scope.
 
 Summary
-Arrow functions provide a concise syntax and have specific behavior regarding this binding, which can simplify many common programming patterns in JavaScript. They are particularly useful for short function expressions, such as callbacks in array methods, and for ensuring this refers to the correct context in asynchronous code or object methods.
+Arrow functions provide a concise syntax and have specific behavior regarding this binding, which can simplify many common programming patterns in JavaScript.
+They are particularly useful for short function expressions, such as callbacks in array methods,
+and for ensuring this refers to the correct context in asynchronous code or object methods.
+
+
 
 What advantage is there for using the arrow syntax for a method in a constructor?
-ChatGPT
-Using the arrow function syntax for a method in a constructor has a significant advantage related to the handling of the this keyword. Specifically, arrow functions do not have their own this context; instead, they inherit this from the enclosing lexical scope. This characteristic can simplify code, particularly when dealing with event handlers, callbacks, or asynchronous operations inside class methods.
+
+Using the arrow function syntax for a method in a constructor has a significant advantage related to the handling of the this keyword.
+Specifically, arrow functions do not have their own this context; instead, they inherit this from the enclosing lexical scope.
+This characteristic can simplify code, particularly when dealing with event handlers, callbacks, or asynchronous operations inside class methods.
 
 Advantages of Arrow Functions in Constructors
 Lexical this Binding:
-Arrow functions inherit this from the enclosing lexical scope, which means that this inside an arrow function always refers to the this value from the surrounding code. This can help avoid common issues with this in JavaScript, especially when passing methods as callbacks.
+Arrow functions inherit this from the enclosing lexical scope, which means that this inside an arrow function always
+refers to the this value from the surrounding code.
+This can help avoid common issues with this in JavaScript, especially when passing methods as callbacks.
 
 No Need for Explicit Binding:
-When using regular functions, it is often necessary to explicitly bind the method to the instance using bind(this) to ensure this refers to the correct context. Arrow functions eliminate this need, reducing boilerplate code and potential errors.
+When using regular functions, it is often necessary to explicitly bind the method to the instance using bind(this) to ensure this refers to the correct context.
+Arrow functions eliminate this need, reducing boilerplate code and potential errors.
 
 Example: Using Arrow Functions to Handle this Correctly
-Consider a class with a method that will be used as a callback, such as an event handler. Without arrow functions, you would need to explicitly bind the method to the class instance.
+Consider a class with a method that will be used as a callback, such as an event handler.
+Without arrow functions, you would need to explicitly bind the method to the class instance.
 
 Without Arrow Functions:
 
-javascript
-Copy code
 class Counter {
   constructor() {
     this.count = 0;
@@ -2764,8 +2786,6 @@ In this example, this.increment.bind(this) is necessary to ensure that this insi
 
 With Arrow Functions:
 
-javascript
-Copy code
 class Counter {
   constructor() {
     this.count = 0;
@@ -2784,7 +2804,8 @@ class Counter {
 
 const counter = new Counter();
 counter.start();
-By using an arrow function for increment, the method automatically inherits the this value from the surrounding scope, which is the instance of Counter. This eliminates the need to manually bind the method.
+By using an arrow function for increment, the method automatically inherits the this value from the surrounding scope, which is the instance of Counter.
+This eliminates the need to manually bind the method.
 
 Summary
 Using arrow functions for methods defined in a constructor provides the following advantages:
@@ -2792,10 +2813,13 @@ Using arrow functions for methods defined in a constructor provides the followin
 Simplifies code: Reduces the need for manual binding with bind(this).
 Avoids common pitfalls: Ensures that this always refers to the intended context (the class instance) without additional effort.
 Improves readability: Results in cleaner and more maintainable code by reducing boilerplate.
-These benefits are particularly useful when dealing with event handlers, callbacks, or any situation where methods are passed around and executed in different contexts.
+These benefits are particularly useful when dealing with event handlers, callbacks, or any situation where methods are passed
+around and executed in different contexts.
+
+
 
 What is the definition of a higher-order function?
-ChatGPT
+
 A higher-order function is a function that meets at least one of the following criteria:
 
 Takes one or more functions as arguments: It can accept functions as parameters.
@@ -2807,8 +2831,6 @@ Functions that take other functions as arguments:
 
 Example: Array Methods (map, filter, reduce)
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 
 const doubled = numbers.map(number => number * 2);
@@ -2822,8 +2844,6 @@ Functions that return other functions:
 
 Example: Function Returning Another Function
 
-javascript
-Copy code
 function createMultiplier(multiplier) {
   return function(x) {
     return x * multiplier;
@@ -2838,6 +2858,7 @@ console.log(triple(5)); // Output: 15
 In this example, createMultiplier is a higher-order function because it returns a function.
 
 Why Use Higher-Order Functions?
+
 Higher-order functions offer several benefits:
 
 Abstraction: They allow you to abstract common patterns and operations on data, leading to more readable and maintainable code.
@@ -2850,15 +2871,15 @@ Function Composition: Functions like compose or pipe used in functional programm
 Conclusion
 A higher-order function is an essential concept in functional programming, allowing for greater flexibility and abstraction in code by treating functions as first-class citizens. They enable powerful patterns of composition and reuse, leading to cleaner and more expressive code.
 
+
+
 Can you give an example for destructuring an object or an array?
-ChatGPT
+
 Certainly! Destructuring is a convenient way to extract values from arrays or properties from objects into distinct variables. Here are examples of destructuring both an array and an object:
 
 Destructuring an Array
 Example 1: Basic Array Destructuring
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 
 // Destructure the first two elements into variables a and b
@@ -2867,8 +2888,6 @@ console.log(a); // Output: 1
 console.log(b); // Output: 2
 Example 2: Skipping Elements
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 
 // Skip the first element and destructure the second and third elements
@@ -2877,8 +2896,6 @@ console.log(second); // Output: 2
 console.log(third); // Output: 3
 Example 3: Destructuring with Rest Operator
 
-javascript
-Copy code
 const numbers = [1, 2, 3, 4, 5];
 
 // Destructure the first element and the rest of the elements into a new array
@@ -2888,8 +2905,6 @@ console.log(rest);  // Output: [2, 3, 4, 5]
 Destructuring an Object
 Example 1: Basic Object Destructuring
 
-javascript
-Copy code
 const person = {
   name: 'John',
   age: 30,
@@ -2903,8 +2918,6 @@ console.log(age);  // Output: 30
 console.log(city); // Output: New York
 Example 2: Destructuring with Different Variable Names
 
-javascript
-Copy code
 const person = {
   name: 'John',
   age: 30,
@@ -2918,8 +2931,6 @@ console.log(yearsOld);  // Output: 30
 console.log(location);  // Output: New York
 Example 3: Destructuring with Default Values
 
-javascript
-Copy code
 const person = {
   name: 'John',
   age: 30,
@@ -2932,8 +2943,6 @@ console.log(age);  // Output: 30
 console.log(city); // Output: Unknown
 Example 4: Nested Object Destructuring
 
-javascript
-Copy code
 const person = {
   name: 'John',
   address: {
@@ -2950,15 +2959,14 @@ console.log(country); // Output: USA
 Summary
 Destructuring syntax in JavaScript allows for more concise and readable extraction of values from arrays and objects. It can be especially useful in function parameters, making code more expressive and easier to maintain.
 
+
 Can you give an example of generating a string with ES6 Template Literals?
-ChatGPT
-Sure! ES6 Template Literals, also known as template strings, provide an easy and readable way to create strings, especially when you need to include variables or expressions within the string. Template literals are enclosed by backticks (`) and can contain placeholders indicated by ${expression}.
+
+ES6 Template Literals, also known as template strings, provide an easy and readable way to create strings, especially when you need to include variables or expressions within the string. Template literals are enclosed by backticks (`) and can contain placeholders indicated by ${expression}.
 
 Example 1: Basic Usage
 Here's a basic example of using template literals to include variables in a string:
 
-javascript
-Copy code
 const name = 'John';
 const age = 30;
 const city = 'New York';
@@ -2968,11 +2976,10 @@ const introduction = `Hello, my name is ${name}. I am ${age} years old and I liv
 
 console.log(introduction);
 // Output: Hello, my name is John. I am 30 years old and I live in New York.
+
 Example 2: Expression Interpolation
 Template literals allow you to include expressions inside the placeholders:
 
-javascript
-Copy code
 const a = 5;
 const b = 10;
 
@@ -2981,11 +2988,10 @@ const result = `The sum of ${a} and ${b} is ${a + b}.`;
 
 console.log(result);
 // Output: The sum of 5 and 10 is 15.
+
 Example 3: Multiline Strings
 Template literals make it easy to create multiline strings without the need for concatenation or escape characters:
 
-javascript
-Copy code
 const poem = `Roses are red,
 Violets are blue,
 Sugar is sweet,
@@ -2999,11 +3005,10 @@ Violets are blue,
 Sugar is sweet,
 And so are you.
 */
+
 Example 4: Nested Template Literals
 You can also nest template literals within each other for more complex string generation:
 
-javascript
-Copy code
 const user = {
   name: 'Alice',
   age: 28,
@@ -3027,11 +3032,12 @@ Name: Alice
 Age: 28
 Address: 123 Main St, Wonderland
 */
-Example 5: Tagged Template Literals
-Tagged template literals allow you to parse template literals with a function. This can be useful for custom processing or for creating DSLs (Domain Specific Languages).
 
-javascript
-Copy code
+Example 5: Tagged Template Literals
+Tagged template literals allow you to parse template literals with a function.
+This can be useful for custom processing or for creating DSLs (Domain Specific Languages).
+
+
 function highlight(strings, ...values) {
   return strings.reduce((result, string, i) => {
     const value = values[i] ? `<strong>${values[i]}</strong>` : '';
@@ -3047,19 +3053,20 @@ const message = highlight`My name is ${name} and I am ${age} years old.`;
 console.log(message);
 // Output: My name is <strong>John</strong> and I am <strong>30</strong> years old.
 Summary
-Template literals in ES6 provide a flexible and powerful way to work with strings, making it easier to include variables, expressions, and even multiline strings. They enhance readability and simplify string manipulation compared to traditional string concatenation methods.
+Template literals in ES6 provide a flexible and powerful way to work with strings, making it easier to include variables,
+expressions, and even multiline strings.
+They enhance readability and simplify string manipulation compared to traditional string concatenation methods.
 
 Can you give an example of a curry function and why this syntax offers an advantage?
 ChatGPT
-Certainly! Currying is a functional programming technique where a function with multiple arguments is transformed into a sequence of functions, each taking a single argument. This allows for partial application of functions, which can be very powerful for creating more modular and reusable code.
+Certainly! Currying is a functional programming technique where a function with multiple arguments is transformed into a sequence of functions,
+each taking a single argument. This allows for partial application of functions, which can be very powerful for creating more modular and reusable code.
 
 Example of a Curried Function
 Let's create a simple example of a curried function in JavaScript. We'll create a curried function that adds three numbers.
 
 Regular Function:
 
-javascript
-Copy code
 function add(a, b, c) {
   return a + b + c;
 }
@@ -3067,8 +3074,6 @@ function add(a, b, c) {
 console.log(add(1, 2, 3)); // Output: 6
 Curried Function:
 
-javascript
-Copy code
 function curryAdd(a) {
   return function(b) {
     return function(c) {
@@ -3085,8 +3090,6 @@ console.log(result); // Output: 6
 Simplifying with Arrow Functions
 We can simplify the syntax using arrow functions:
 
-javascript
-Copy code
 const curryAdd = a => b => c => a + b + c;
 
 const add1 = curryAdd(1);
@@ -3098,12 +3101,12 @@ console.log(result); // Output: 6
 // Or more succinctly
 const resultDirect = curryAdd(1)(2)(3);
 console.log(resultDirect); // Output: 6
+
+
 Advantages of Currying
 Partial Application:
 Currying allows you to create partially applied functions easily. This can be very useful in many scenarios where you want to fix some arguments and reuse the function with different arguments later.
 
-javascript
-Copy code
 const add5 = curryAdd(5);
 console.log(add5(3)(2)); // Output: 10
 console.log(add5(10)(1)); // Output: 16
@@ -3119,8 +3122,6 @@ Currying can lead to more readable and maintainable code by breaking down functi
 Practical Example
 Suppose we have a logging function that logs messages with a certain log level:
 
-javascript
-Copy code
 const log = level => message => console.log(`[${level}] ${message}`);
 
 const info = log('INFO');
@@ -3130,71 +3131,68 @@ const error = log('ERROR');
 info('This is an info message');    // Output: [INFO] This is an info message
 warn('This is a warning message');  // Output: [WARN] This is a warning message
 error('This is an error message');  // Output: [ERROR] This is an error message
-In this example, log is a curried function that takes a log level and returns a function that takes a message. This allows you to create specialized logging functions (like info, warn, and error) that you can reuse throughout your code.
+
+In this example, log is a curried function that takes a log level and returns a function that takes a message.
+This allows you to create specialized logging functions (like info, warn, and error) that you can reuse throughout your code.
 
 Summary
-Currying transforms functions into a series of functions with a single argument, enabling partial application and function composition. This technique enhances code modularity, readability, and reusability, making it a valuable tool in functional programming.
+Currying transforms functions into a series of functions with a single argument, enabling partial application and function composition.
+This technique enhances code modularity, readability, and reusability, making it a valuable tool in functional programming.
 
 What are the benefits of using spread syntax and how is it different from rest syntax?
 ChatGPT
-The spread syntax (...) and rest syntax (...) in JavaScript provide powerful and expressive ways to work with arrays, objects, and function arguments. Despite looking identical, they serve different purposes and are used in different contexts.
+The spread syntax (...) and rest syntax (...) in JavaScript provide powerful and expressive ways to work with arrays, objects, and function arguments.
+Despite looking identical, they serve different purposes and are used in different contexts.
 
 Spread Syntax
 The spread syntax is used to expand elements of an iterable (like an array) or properties of an object into individual elements or properties.
 
 Benefits of Spread Syntax
+
 Copying Arrays:
 
-javascript
-Copy code
 const array1 = [1, 2, 3];
 const array2 = [...array1];
 console.log(array2); // Output: [1, 2, 3]
+
 Merging Arrays:
 
-javascript
-Copy code
 const array1 = [1, 2, 3];
 const array2 = [4, 5, 6];
 const mergedArray = [...array1, ...array2];
 console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
 Expanding Elements in Function Calls:
 
-javascript
-Copy code
 const numbers = [1, 2, 3];
 console.log(Math.max(...numbers)); // Output: 3
+
 Copying and Merging Objects:
 
-javascript
-Copy code
+
 const obj1 = { a: 1, b: 2 };
 const obj2 = { c: 3, d: 4 };
 const mergedObj = { ...obj1, ...obj2 };
 console.log(mergedObj); // Output: { a: 1, b: 2, c: 3, d: 4 }
+
 Rest Syntax
-The rest syntax is used to collect multiple elements or properties into a single array or object. It is often used in function parameters and destructuring assignments.
+The rest syntax is used to collect multiple elements or properties into a single array or object.
+It is often used in function parameters and destructuring assignments.
 
 Benefits of Rest Syntax
+
 Function Parameters:
 
-javascript
-Copy code
 function sum(...numbers) {
   return numbers.reduce((acc, curr) => acc + curr, 0);
 }
 console.log(sum(1, 2, 3)); // Output: 6
 Destructuring Arrays:
 
-javascript
-Copy code
 const [first, ...rest] = [1, 2, 3, 4];
 console.log(first); // Output: 1
 console.log(rest);  // Output: [2, 3, 4]
 Destructuring Objects:
 
-javascript
-Copy code
 const { a, b, ...rest } = { a: 1, b: 2, c: 3, d: 4 };
 console.log(a); // Output: 1
 console.log(b); // Output: 2
@@ -3207,14 +3205,12 @@ Rest Syntax: Collects multiple elements or properties into a single array or obj
 Usage Context:
 
 Spread Syntax: Used in array literals, object literals, and function calls.
-javascript
-Copy code
+
 const array = [...iterable];
 const obj = { ...object };
 const max = Math.max(...numbers);
 Rest Syntax: Used in function parameter lists and destructuring assignments.
-javascript
-Copy code
+
 function fn(...args) { /* ... */ }
 const [first, ...rest] = array;
 const { a, ...rest } = object;
@@ -3223,13 +3219,18 @@ Appearance in Code:
 Spread Syntax: Expands elements/properties.
 Rest Syntax: Gathers elements/properties.
 Summary
-Spread Syntax (...) is used to unpack elements of an array or properties of an object into individual elements or properties, enhancing operations like copying and merging arrays or objects.
+Spread Syntax (...) is used to unpack elements of an array or properties of an object into individual elements or properties,
+enhancing operations like copying and merging arrays or objects.
 Rest Syntax (...) is used to pack multiple elements or properties into an array or object, simplifying function parameters and destructuring assignments.
 Understanding the differences and appropriate contexts for spread and rest syntax allows you to write more expressive, concise, and maintainable JavaScript code.
 
+
+
 How can you share code between files?
-ChatGPT
-Sharing code between files in JavaScript can be accomplished through modules. JavaScript has several ways to define and use modules, with the most common approaches being ES6 (ECMAScript 2015) module syntax and CommonJS module syntax. Here’s how you can share code between files using both methods:
+
+Sharing code between files in JavaScript can be accomplished through modules.
+JavaScript has several ways to define and use modules, with the most common approaches being ES6 (ECMAScript 2015) module syntax and CommonJS module syntax.
+Here’s how you can share code between files using both methods:
 
 ES6 Modules (ECMAScript 2015)
 Exporting Code
@@ -3237,8 +3238,7 @@ You can export variables, functions, or classes from a module using the export k
 
 Example: Exporting from a module (math.js):
 
-javascript
-Copy code
+
 // math.js
 export const add = (a, b) => a + b;
 export const subtract = (a, b) => a - b;
@@ -3247,8 +3247,6 @@ You can import the exported entities into another file using the import keyword.
 
 Example: Importing the module (app.js):
 
-javascript
-Copy code
 // app.js
 import { add, subtract } from './math.js';
 
@@ -3259,8 +3257,6 @@ You can also export a single default export from a module.
 
 Example: Default export (math.js):
 
-javascript
-Copy code
 // math.js
 const multiply = (a, b) => a * b;
 export default multiply;
@@ -3280,8 +3276,7 @@ You can export functions, objects, or any other variables using module.exports.
 
 Example: Exporting from a module (math.js):
 
-javascript
-Copy code
+
 // math.js
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -3295,8 +3290,6 @@ You can import the exported entities using require.
 
 Example: Importing the module (app.js):
 
-javascript
-Copy code
 // app.js
 const math = require('./math.js');
 
@@ -3307,19 +3300,18 @@ In CommonJS, there isn't a dedicated export default syntax, but you can achieve 
 
 Example: Default export (math.js):
 
-javascript
-Copy code
+
 // math.js
 const multiply = (a, b) => a * b;
 module.exports = multiply;
 Example: Importing the default export (app.js):
 
-javascript
-Copy code
+
 // app.js
 const multiply = require('./math.js');
 
 console.log(multiply(4, 5));   // Output: 20
+
 Summary
 ES6 Modules:
 Use export to export variables, functions, or classes.
@@ -3329,25 +3321,34 @@ CommonJS Modules:
 Use module.exports to export.
 Use require to import.
 Commonly used in Node.js environments.
-Choosing between these two largely depends on your environment. ES6 modules are the standard for modern JavaScript and are supported natively in browsers and in Node.js starting from version 12. CommonJS is still widely used in Node.js projects, especially those that predate ES6 modules.
+Choosing between these two largely depends on your environment.
+ES6 modules are the standard for modern JavaScript and are supported natively in browsers and in Node.js starting from version 12.
+CommonJS is still widely used in Node.js projects, especially those that predate ES6 modules.
+
 
 Why you might want to create static class members?
-ChatGPT
-Static class members are class members (properties or methods) that belong to the class itself rather than to instances of the class. They are shared across all instances of the class and can be accessed directly from the class itself. There are several reasons why you might want to create static class members:
 
-Shared Data: Static members are shared among all instances of a class. They provide a way to maintain data that is common to all instances without duplicating it for each instance.
+Static class members are class members (properties or methods) that belong to the class itself rather than to instances of the class.
+They are shared across all instances of the class and can be accessed directly from the class itself.
+There are several reasons why you might want to create static class members:
 
-Utility Functions: Static methods can be used to define utility functions that are related to the class but do not require access to instance-specific data. These methods can be called directly on the class without the need to create an instance.
+Shared Data: Static members are shared among all instances of a class.
+They provide a way to maintain data that is common to all instances without duplicating it for each instance.
 
-Performance Optimization: Since static members are shared across all instances, they can help optimize memory usage by avoiding duplication of data that would otherwise be stored in each instance.
+Utility Functions: Static methods can be used to define utility functions that are related to the class but do not require access to instance-specific data.
+These methods can be called directly on the class without the need to create an instance.
 
-Namespace Organization: Static members provide a way to organize related functionality within a class without cluttering the instance interface. They can be used to group together methods or properties that are not tied to specific instances.
+Performance Optimization: Since static members are shared across all instances, they can help optimize memory usage by
+avoiding duplication of data that would otherwise be stored in each instance.
 
-Singleton Pattern: Static properties and methods can be used to implement the singleton pattern, where only one instance of a class is created and shared across the application.
+Namespace Organization: Static members provide a way to organize related functionality within a class without cluttering the instance interface.
+They can be used to group together methods or properties that are not tied to specific instances.
+
+Singleton Pattern: Static properties and methods can be used to implement the singleton pattern,
+where only one instance of a class is created and shared across the application.
 
 Example:
-javascript
-Copy code
+
 class MathUtils {
   // Static method to calculate the square of a number
   static square(x) {
@@ -3363,10 +3364,14 @@ console.log(MathUtils.square(5)); // Output: 25
 
 // Accessing static property directly from the class
 console.log(MathUtils.PI); // Output: 3.14159
-In this example, square and PI are static members of the MathUtils class. They are accessed directly from the class itself without the need to create an instance. This allows for a clean and concise way to organize and access utility functions and shared data.
+In this example, square and PI are static members of the MathUtils class.
+They are accessed directly from the class itself without the need to create an instance.
+This allows for a clean and concise way to organize and access utility functions and shared data.
+
+
 
 What is the difference between while and do-while loops in JavaScript?
-ChatGPT
+
 In JavaScript, both while and do-while loops are used for repetitive execution of a block of code. However, they differ in when their condition is evaluated.
 
 while Loop
@@ -3374,34 +3379,28 @@ In a while loop, the condition is evaluated before the execution of the loop's b
 
 Syntax:
 
-javascript
-Copy code
 while (condition) {
   // code block to be executed
 }
 Example:
 
-javascript
-Copy code
 let i = 0;
 while (i < 5) {
   console.log(i);
   i++;
 }
+
 do-while Loop
 In a do-while loop, the condition is evaluated after the execution of the loop's block of code. This means that the block of code is executed at least once, regardless of whether the condition is true or false.
 
 Syntax:
 
-javascript
-Copy code
 do {
   // code block to be executed
 } while (condition);
+
 Example:
 
-javascript
-Copy code
 let i = 0;
 do {
   console.log(i);
@@ -3422,20 +3421,25 @@ Use do-while when: You want to execute a block of code at least once, regardless
 Example Scenarios
 while: Checking if user input is valid before entering a loop.
 do-while: Processing user input at least once and then validating it in a loop.
+
 Example:
-javascript
-Copy code
+
 let userInput;
 do {
   userInput = prompt("Please enter a number greater than 10:");
 } while (isNaN(userInput) || parseInt(userInput) <= 10);
 
 console.log("You entered a valid number:", userInput);
-In this example, the do-while loop ensures that the user is prompted for input at least once. Then, it continues to prompt the user until a valid number greater than 10 is entered.
+
+In this example, the do-while loop ensures that the user is prompted for input at least once.
+Then, it continues to prompt the user until a valid number greater than 10 is entered.
+
+
 
 What is a promise? Where and how would you use promise?
-ChatGPT
-A promise in JavaScript is an object representing the eventual completion or failure of an asynchronous operation and its resulting value. Promises provide a cleaner and more organized way to handle asynchronous code compared to traditional callback functions.
+
+A promise in JavaScript is an object representing the eventual completion or failure of an asynchronous operation and its resulting value.
+Promises provide a cleaner and more organized way to handle asynchronous code compared to traditional callback functions.
 
 Characteristics of Promises:
 States:
@@ -3446,8 +3450,7 @@ Rejected: The operation failed.
 Chaining: Promises can be chained together using .then() and .catch() methods to handle success and failure respectively.
 
 Creating a Promise:
-javascript
-Copy code
+
 const myPromise = new Promise((resolve, reject) => {
   // Asynchronous operation (e.g., fetching data, reading file)
   setTimeout(() => {
@@ -3459,9 +3462,10 @@ const myPromise = new Promise((resolve, reject) => {
     }
   }, 1000);
 });
+
+
 Using a Promise:
-javascript
-Copy code
+
 myPromise
   .then((result) => {
     console.log('Success:', result);
@@ -3495,8 +3499,7 @@ Chaining: Promises support method chaining, making it easy to sequence multiple 
 Composition: Promises can be composed together using Promise.all() and Promise.race() for more complex scenarios.
 
 Example: Fetching Data with Promises
-javascript
-Copy code
+
 fetch('https://api.example.com/data')
   .then(response => {
     if (!response.ok) {
@@ -3512,8 +3515,10 @@ fetch('https://api.example.com/data')
   });
 In this example, fetch returns a promise that resolves with a response object. We handle the success and failure scenarios using .then() and .catch() respectively. The second .then() is used to parse the response body as JSON. If any of the promises in the chain rejects (e.g., due to a network error or parsing error), the error is caught and handled in the .catch() block.
 
+
+
 Discuss how you might use Object Oriented Programming principles when coding with JavaScript.
-ChatGPT
+
 Object-oriented programming (OOP) principles can be effectively applied in JavaScript to organize code, create reusable components, and model real-world entities. Here's how you can use OOP principles when coding with JavaScript:
 
 1. Encapsulation
@@ -3521,8 +3526,6 @@ Encapsulation involves bundling the data (properties) and methods (functions) th
 
 Example:
 
-javascript
-Copy code
 class Car {
   constructor(make, model) {
     this.make = make;
@@ -3538,6 +3541,7 @@ class Car {
 
 const myCar = new Car('Toyota', 'Corolla');
 myCar.drive(100); // Output: The Toyota Corolla has driven 100 miles.
+
 2. Inheritance
 Inheritance allows a class (subclass) to inherit properties and methods from another class (superclass). In JavaScript, you can achieve inheritance using the extends keyword.
 
@@ -3563,8 +3567,10 @@ class Dog extends Animal {
 
 const dog = new Dog('Buddy');
 dog.speak(); // Output: Buddy barks.
+
 3. Polymorphism
-Polymorphism allows objects of different classes to be treated as objects of a common superclass. In JavaScript, polymorphism is achieved through method overriding.
+Polymorphism allows objects of different classes to be treated as objects of a common superclass.
+In JavaScript, polymorphism is achieved through method overriding.
 
 Example:
 
@@ -3592,13 +3598,13 @@ const shapes = [new Circle(), new Rectangle()];
 shapes.forEach(shape => shape.draw());
 // Output: Drawing a circle
 //         Drawing a rectangle
+
 4. Abstraction
-Abstraction involves hiding the complex implementation details and exposing only the necessary functionalities to the outside world. In JavaScript, you can achieve abstraction by defining interfaces or using private and public methods/properties.
+Abstraction involves hiding the complex implementation details and exposing only the necessary functionalities to the outside world.
+In JavaScript, you can achieve abstraction by defining interfaces or using private and public methods/properties.
 
 Example:
 
-javascript
-Copy code
 class BankAccount {
   #balance = 0;
 
@@ -3623,7 +3629,10 @@ const account = new BankAccount();
 account.deposit(100);
 account.withdraw(50);
 console.log(account.getBalance()); // Output: 50
+
+
 Benefits of Using OOP Principles in JavaScript:
+
 Modularity: OOP promotes modular design, making code easier to understand, maintain, and reuse.
 Encapsulation: Protects internal state and behavior of objects, reducing complexity and potential bugs.
 Inheritance: Promotes code reuse and enables hierarchical relationships between classes.
@@ -3631,23 +3640,28 @@ Polymorphism: Enhances flexibility and enables code to work with objects of diff
 Abstraction: Simplifies the interaction with objects by hiding unnecessary details.
 By applying these OOP principles in JavaScript, you can create more organized, flexible, and maintainable code that better models real-world entities and systems.
 
+
+
 What is the difference between event.target and event.currentTarget?
-ChatGPT
+
 In JavaScript, when handling events, event.target and event.currentTarget refer to different elements and serve different purposes.
 
 event.target
 event.target refers to the element that triggered the event.
 It represents the actual element where the event occurred, regardless of where the event listener was attached.
 For most events, event.target is the element that directly received the event.
-If event bubbling is occurring (i.e., the event is propagating up through the DOM hierarchy), event.target remains the same, pointing to the original element that triggered the event.
+If event bubbling is occurring (i.e., the event is propagating up through the DOM hierarchy), event.target remains the same,
+pointing to the original element that triggered the event.
 event.currentTarget
 event.currentTarget refers to the element to which the event listener is attached.
 It represents the element that is currently handling the event during the event propagation phase.
-If event bubbling is occurring, event.currentTarget can change as the event propagates up the DOM hierarchy. It always refers to the element currently handling the event.
-event.currentTarget can be particularly useful when you have event handlers attached to multiple elements of the same class or type, and you want to identify which specific element triggered the event.
+If event bubbling is occurring, event.currentTarget can change as the event propagates up the DOM hierarchy.
+It always refers to the element currently handling the event.
+event.currentTarget can be particularly useful when you have event handlers attached to multiple elements of the same class or type,
+and you want to identify which specific element triggered the event.
 Example:
-html
-Copy code
+
+
 <div id="outer">
   <div id="inner">
     Click Me
@@ -3676,9 +3690,12 @@ event.currentTarget is outer (since the event listener is attached to the outer 
 Summary:
 event.target refers to the element that triggered the event.
 event.currentTarget refers to the element to which the event listener is attached and represents the current element handling the event during event propagation.
-Understanding the difference between event.target and event.currentTarget can help in writing more robust and accurate event handling code, especially when dealing with event delegation or event bubbling scenarios.
+Understanding the difference between event.target and event.currentTarget can help in writing more
+robust and accurate event handling code, especially when dealing with event delegation or event bubbling scenarios.
+
+
 What is the difference between event.preventDefault() and event.stopPropagation()?
-ChatGPT
+
 Both event.preventDefault() and event.stopPropagation() are methods used in event handling in JavaScript, but they serve different purposes.
 
 event.preventDefault()
@@ -3692,8 +3709,7 @@ However, the default action associated with the event (such as form submission o
 Example:
 Consider a scenario where you have a button inside a form, and you want to prevent the form from being submitted when the button is clicked.
 
-html
-Copy code
+
 <form id="myForm">
   <button id="myButton">Submit</button>
 </form>
@@ -3716,15 +3732,18 @@ With event.preventDefault(), clicking the button prevents the form submission, b
 With both event.preventDefault() and event.stopPropagation(), clicking the button prevents the form submission, and "Button clicked" would be logged to the console, but "Form clicked" would not.
 Summary:
 event.preventDefault() prevents the default behavior associated with an event from occurring, such as form submission or link navigation.
-event.stopPropagation() stops the propagation of an event through the DOM hierarchy, preventing further execution of event listeners on ancestor or descendant elements.
-Understanding the difference between event.preventDefault() and event.stopPropagation() is important for controlling event behavior and event propagation in JavaScript applications.
+event.stopPropagation() stops the propagation of an event through the DOM hierarchy,
+preventing further execution of event listeners on ancestor or descendant elements.
+Understanding the difference between event.preventDefault() and event.stopPropagation() is important for controlling
+event behavior and event propagation in JavaScript applications.
+
+
 Make this work:
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
-ChatGPT
+
 You can achieve this by concatenating the array with itself. Here's a function duplicate that takes an array as input and returns a new array containing the elements of the input array repeated twice:
 
-javascript
-Copy code
+
 function duplicate(arr) {
   return arr.concat(arr);
 }
@@ -3732,12 +3751,13 @@ function duplicate(arr) {
 console.log(duplicate([1, 2, 3, 4, 5])); // Output: [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
 This function uses the concat method to concatenate the input array arr with itself, effectively duplicating its elements in the resulting array.
 
+
 Create a for loop that iterates up to 100 while outputting “fizz” at multiples of 3, “buzz” at multiples of 5 and “fizzbuzz” at multiples of 3 and 5
-ChatGPT
+
+
 You can achieve this by using a for loop to iterate from 1 to 100 and then checking for multiples of 3, 5, and both 3 and 5. Here's how you can do it:
 
-javascript
-Copy code
+
 for (let i = 1; i <= 100; i++) {
   // Check for multiples of both 3 and 5 first
   if (i % 3 === 0 && i % 5 === 0) {
@@ -3765,7 +3785,8 @@ If it's not a multiple of 3 or 5, it outputs the number itself.
 What will be returned by each of these?
 console.log("hello" || "world")
 console.log("foo" && "bar")
-ChatGPT
+
+
 In JavaScript, the logical OR (||) and logical AND (&&) operators behave in specific ways when used with non-boolean operands:
 
 console.log("hello" || "world")
@@ -3783,26 +3804,25 @@ Output: "bar"
 Summary:
 || returns the first truthy operand, or the last operand if all are falsy.
 && returns the first falsy operand, or the last operand if all are truthy.
-Write an immediately invoked function expression (IIFE)
-ChatGPT
-An Immediately Invoked Function Expression (IIFE) is a JavaScript function that is executed immediately after it's defined. It's often used to create a private scope for variables to avoid polluting the global namespace. Here's how you can write an IIFE:
 
-javascript
-Copy code
+
+
+Write an immediately invoked function expression (IIFE)
+
+An Immediately Invoked Function Expression (IIFE) is a JavaScript function that is executed immediately after it's defined.
+It's often used to create a private scope for variables to avoid polluting the global namespace. Here's how you can write an IIFE:
+
 (function() {
   // Your code here
 })();
 You can also pass arguments to an IIFE:
 
-javascript
-Copy code
 (function(arg1, arg2) {
   // Your code here
 })(value1, value2);
+
 Here's an example of an IIFE that logs a message:
 
-javascript
-Copy code
 (function() {
   console.log("This is an IIFE!");
 })();
