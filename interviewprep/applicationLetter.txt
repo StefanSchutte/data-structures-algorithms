@@ -1,0 +1,24 @@
+Good day.
+
+I hereby apply for the Junior Frontend Developer position advertised on Linkedin.
+
+- Entry level Software Developer/ Web Developer.
+- Software Development Certification at CodeSpace Academy.
+- I have experience/ familiarity with HTML, CSS, JavaScript, TypeScript and Ubuntu Linux.
+- Experience in JS frameworks like React, Vue.
+- Experience with tailwindcss.
+- Experience with Figma, Git, Github.
+- Understanding of key design principles.
+- Understanding of front-end coding and development technologies.
+- I'm interested in web technologies.
+- I'm passionate and a team player.
+- Problem-solving skills and an eye for detail.
+- Self-motivated & self-reliant - able to learn and stay productive remotely
+- Communication skills: English/Afrikaans
+
+My Portfolio: https://my-website-stefan-schutte.netlify.app/
+Github: https://github.com/StefanSchutte
+Linkedin: https://www.linkedin.com/in/stefan-schutte/
+
+Thank you.
+Stefan Schutte
